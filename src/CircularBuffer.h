@@ -10,78 +10,94 @@
 #include <algorithm>
 #include <vector>
 
-int const silence_threshold = 8;
+constexpr int SILENCE_THRESHOLD = 8;
 
 template<typename T>
-class circular_buffer
+class CircularBuffer
 {
 public:
-  circular_buffer(unsigned p_size) : readptr(0), writeptr(0), size(p_size), used(0)
+  explicit CircularBuffer(unsigned p_size) : m_size{p_size} { m_buffer.resize(p_size); }
+
+  auto DataAvailable() -> unsigned { return m_used; }
+  auto FreeSpace() -> unsigned { return m_size - m_used; }
+
+  auto Write(const T* src, unsigned count) -> bool
   {
-    buffer.resize(p_size);
-  }
-  unsigned data_available() { return used; }
-  unsigned free_space() { return size - used; }
-  bool write(const T* src, unsigned count)
-  {
-    if (count > free_space())
+    if (count > FreeSpace())
+    {
       return false;
+    }
     while (count)
     {
-      unsigned delta = size - writeptr;
+      unsigned delta = m_size - m_writePtr;
       if (delta > count)
+      {
         delta = count;
-      std::copy(src, src + delta, buffer.begin() + writeptr);
-      used += delta;
-      writeptr = (writeptr + delta) % size;
+      }
+      std::copy(src, src + delta, m_buffer.begin() + m_writePtr);
+      m_used += delta;
+      m_writePtr = (m_writePtr + delta) % m_size;
       src += delta;
       count -= delta;
     }
     return true;
   }
-  unsigned read(T* dst, unsigned count)
+
+  auto Read(T* dst, unsigned count) -> unsigned
   {
     unsigned done = 0;
     for (;;)
     {
-      unsigned delta = size - readptr;
-      if (delta > used)
-        delta = used;
+      unsigned delta = m_size - m_readptr;
+      if (delta > m_used)
+      {
+        delta = m_used;
+      }
       if (delta > count)
+      {
         delta = count;
+      }
       if (!delta)
+      {
         break;
+      }
 
-      std::copy(buffer.begin() + readptr, buffer.begin() + readptr + delta, dst);
+      std::copy(m_buffer.begin() + m_readptr, m_buffer.begin() + m_readptr + delta, dst);
       dst += delta;
       done += delta;
-      readptr = (readptr + delta) % size;
+      m_readptr = (m_readptr + delta) % m_size;
       count -= delta;
-      used -= delta;
+      m_used -= delta;
     }
     return done;
   }
-  void reset() { readptr = writeptr = used = 0; }
-  void resize(unsigned p_size)
+
+  void Reset() { m_readptr = m_writePtr = m_used = 0; }
+
+  void Resize(unsigned p_size)
   {
-    size = p_size;
-    buffer.resize(p_size);
-    reset();
+    m_size = p_size;
+    m_buffer.resize(p_size);
+    Reset();
   }
-  bool test_silence() const
+
+  [[nodiscard]] auto TestSilence() const -> bool
   {
-    T* begin = (T*)&buffer[0];
+    T* begin = (T*)&m_buffer[0];
     T first = *begin;
-    *begin = silence_threshold * 2;
-    T* p = begin + size;
-    while ((unsigned)(*--p + silence_threshold) <= (unsigned)silence_threshold * 2)
+    *begin = SILENCE_THRESHOLD * 2;
+    T* p = begin + m_size;
+    while ((unsigned)(*--p + SILENCE_THRESHOLD) <= (unsigned)SILENCE_THRESHOLD * 2)
     {
     }
     *begin = first;
-    return p == begin && ((unsigned)(first + silence_threshold) <= (unsigned)silence_threshold * 2);
+    return p == begin && ((unsigned)(first + SILENCE_THRESHOLD) <= (unsigned)SILENCE_THRESHOLD * 2);
   }
 
 private:
-  std::vector<T> buffer;
-  unsigned readptr, writeptr, used, size;
+  std::vector<T> m_buffer{};
+  unsigned m_readptr = 0;
+  unsigned m_writePtr = 0;
+  unsigned m_used = 0;
+  unsigned m_size;
 };

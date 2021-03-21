@@ -1,0 +1,81 @@
+---
+# Turn these off:
+#
+#  -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+#     Doesn't work with logging.h. Not sure why.
+#
+
+Checks: >
+  -*,
+  bugprone-*,
+  clang-diagnostic-*,
+  clang-analyzer-*,
+  cppcoreguidelines-*,
+  google-*,
+  llvm-*,
+  misc-*,
+  modernize-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+
+# Turn all the warnings from the checks above into errors.
+WarningsAsErrors: '*'
+HeaderFilterRegex: ''
+AnalyzeTemporaryDtors: false
+FormatStyle: none
+
+CheckOptions:
+  - { key: readability-identifier-naming.AbstractClassCase,                 value: CamelCase }
+  - { key: readability-identifier-naming.AbstractClassPrefix,               value: 'I' }
+  - { key: readability-identifier-naming.ClassCase,                         value: CamelCase }
+  - { key: readability-identifier-naming.ConstexprVariableCase,             value: UPPER_CASE }
+  - { key: readability-identifier-naming.ConstexprVariablePrefix,           value: '' }
+  - { key: readability-identifier-naming.ConstantMemberCase,                value: camelCase }
+  - { key: readability-identifier-naming.ConstantMemberPrefix,              value: 'm_' }
+  - { key: readability-identifier-naming.EnumConstantCase,                  value: UPPER_CASE }
+  - { key: readability-identifier-naming.EnumConstantPrefix,                value: '' }
+  - { key: readability-identifier-naming.FunctionCase,                      value: CamelCase }
+  - { key: readability-identifier-naming.GlobalConstantCase,                value: UPPER_CASE }
+  - { key: readability-identifier-naming.GlobalConstantPrefix,              value: '' }
+  - { key: readability-identifier-naming.GlobalFunctionCase,                value: CamelCase }
+  - { key: readability-identifier-naming.LocalConstantCase,                 value: camelCase }
+  - { key: readability-identifier-naming.MacroDefinitionCase,               value: UPPER_CASE }
+  - { key: readability-identifier-naming.MethodCase,                        value: CamelCase }
+  - { key: readability-identifier-naming.NamespaceCase,                     value: UPPER_CASE }
+  - { key: readability-identifier-naming.ParameterCase,                     value: camelCase }
+  - { key: readability-identifier-naming.PrivateMemberPrefix,               value: 'm_' }
+  - { key: readability-identifier-naming.ProtectedMemberPrefix,             value: 'm_' }
+  - { key: readability-identifier-naming.PublicMemberPrefix,                value: '' }
+  - { key: readability-identifier-naming.ScopedEnumConstantCase,            value: UPPER_CASE }
+  - { key: readability-identifier-naming.ScopedEnumConstantPrefix,          value: '' }
+  - { key: readability-identifier-naming.StaticConstantCase,                value: camelCase }
+  - { key: readability-identifier-naming.StaticConstantPrefix,              value: 's_' }
+  - { key: readability-identifier-naming.StaticVariableCase,                value: camelCase }
+  - { key: readability-identifier-naming.StaticVariablePrefix,              value: 's_' }
+  - { key: readability-identifier-naming.StaticMemberPrefix,                value: 'ms_' }
+  - { key: readability-identifier-naming.StructCase,                        value: CamelCase }
+  - { key: readability-identifier-naming.TemplateParameterCase,             value: CamelCase }
+  - { key: readability-identifier-naming.TypeAliasCase,                     value: CamelCase }
+  - { key: readability-identifier-naming.UnionCase,                         value: CamelCase }
+  - { key: readability-identifier-naming.VariableCase,                      value: camelCase }
+  - { key: readability-identifier-naming.VirtualMethodCase,                 value: CamelCase }
+
+  - { key: readability-implicit-bool-conversion.AllowIntegerConditions,     value: '1' }
+  - { key: readability-implicit-bool-conversion.AllowPointerConditions,     value: '1' }
+  - { key: cert-oop54-cpp.WarnOnlyIfThisHasSuspiciousField,                 value: '0' }
+  - { key: cppcoreguidelines-explicit-virtual-functions.IgnoreDestructors,  value: '1' }
+  - { key: cppcoreguidelines-non-private-member-variables-in-classes
+                           .IgnoreClassesWithAllMemberVariablesBeingPublic, value: '1' }
+  - { key: google-readability-braces-around-statements.ShortStatementLines, value: '1' }
+  - { key: google-readability-function-size.StatementThreshold,             value: '800' }
+  - { key: google-readability-namespace-comments.ShortNamespaceLines,       value: '10' }
+  - { key: google-readability-namespace-comments.SpacesBeforeComments,      value: '2' }
+  - { key: modernize-loop-convert.MaxCopySize,                              value: '16' }
+  - { key: modernize-loop-convert.MinConfidence,                            value: reasonable }
+  - { key: modernize-loop-convert.NamingStyle,                              value: CamelCase }
+  - { key: modernize-pass-by-value.IncludeStyle,                            value: llvm }
+  - { key: modernize-replace-auto-ptr.IncludeStyle,                         value: llvm }
+  - { key: misc-non-private-member-variables-in-classes
+           .IgnoreClassesWithAllMemberVariablesBeingPublic,                 value: '1' }

@@ -1,55 +1,76 @@
-cmake_minimum_required(VERSION 3.5)
-project(goom)
+cmake_minimum_required(VERSION 3.13)
+
+project(goom LANGUAGES CXX)
+
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
+#set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address")
+#set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -fsanitize=address")
+# To test Kodi, run:
+#
+#  LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libasan.so.6 kodi &
 
 if(WIN32)
- add_definitions(-D_WIN32PC)
+    add_definitions(-D_WIN32PC)
+endif()
+if ($ENV{DO_GOOM_LOGGING})
+    ADD_DEFINITIONS(-DDO_GOOM_LOGGING)
+    MESSAGE("Added 'DO_GOOM_LOGGING' #define.")
 endif()
 
-set(GOOM_SOURCES src/goomsl_yacc.c
-                 src/goomsl_lex.c
-                 src/goomsl_lex.l
-                 src/goomsl.c
-                 src/goomsl_hash.c
-                 src/goomsl_heap.c
-                 src/goom_tools.c
-                 src/config_param.c
-                 src/convolve_fx.c
-                 src/filters.c
-                 src/flying_stars_fx.c
-                 src/gfontlib.c
-                 src/gfontrle.c
-                 src/goom_core.c
-                 src/graphic.c
-                 src/ifs.c
-                 src/lines.c
-                 src/mathtools.c
-                 src/mmx.c
-                 src/sound_tester.c
-                 src/surf3d.c
-                 src/tentacle3d.c
-                 src/plugin_info.c
-                 src/v3d.c
-                 src/drawmethods.c
-                 src/cpu_info.c
-                 src/xmmx.c)
+add_library(${PROJECT_NAME} 
+    STATIC
+        src/convolve_fx.cpp
+        src/draw_methods.cpp
+        src/filter_buffers.cpp
+        src/filter_control.cpp
+        src/filter_zoom_vector.cpp
+        src/filters.cpp
+        src/flying_stars_fx.cpp
+        src/goom_control.cpp
+        src/goom_dots_fx.cpp
+        src/goom_draw.cpp
+        src/goom_graphic.cpp
+        src/goom_stats.cpp
+        src/goom_visual_fx.cpp
+        src/ifs_dancers_fx.cpp
+        src/image_displacement.cpp
+        src/image_fx.cpp
+        src/lines_fx.cpp
+        src/sound_info.cpp
+        src/stats/filter_stats.cpp
+        src/stats/goom_control_stats.cpp
+        src/stats/ifs_stats.cpp
+        src/stats/line_stats.cpp
+        src/stats/sound_stats.cpp
+        src/stats/stars_stats.cpp
+        src/stats/tentacles_stats.cpp
+        src/tentacles_fx.cpp
+        src/tentacle_driver.cpp
+        src/tentacles.cpp
+        src/tentacles_fx.cpp
+        src/text_draw.cpp
+)
 
-set(GOOM_HEADERS src/goom.h
-                 src/goom_plugin_info.h
-                 src/goom_typedefs.h
-                 src/goom_graphic.h
-                 src/goom_config_param.h
-                 src/goom_visual_fx.h
-                 src/goom_filters.h
-                 src/goom_tools.h
-                 src/goomsl.h
-                 src/goomsl_hash.h
-                 src/goomsl_heap.h
-                 src/goom_tools.h
-                 src/goom_config.h
-                 src/tentacle3d.h
-                 src/mmx.h
-                 src/xmmx.h)
+target_include_directories(${PROJECT_NAME}
+    PUBLIC
+        ${LIBS_DIR}/goom/include
+        ${LIBS_DIR}/goomutils/include
+    PRIVATE
+        ${LIBS_DIR}/goom/include/goom
+)
 
-add_library(goom STATIC ${GOOM_SOURCES} ${GOOM_HEADERS})
-set_property(TARGET goom PROPERTY POSITION_INDEPENDENT_CODE ON)
-set_property(TARGET goom PROPERTY C_STANDARD 11)
+target_include_directories(${PROJECT_NAME}
+    SYSTEM PRIVATE
+        ${LIBS_DIR}/vivid/include
+        ${LIBS_DIR}/fmt/include
+        ${LIBS_DIR}/magic_enum/include
+        ${FREETYPE_INCLUDE_DIRS}
+)
+
+set_target_properties( ${PROJECT_NAME} 
+    PROPERTIES
+        CXX_STANDARD ${CPP_STANDARD}
+        POSITION_INDEPENDENT_CODE ON
+)
+
+message(STATUS "Goom C++ standard = \"${CPP_STANDARD}\".")
