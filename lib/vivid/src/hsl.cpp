@@ -4,6 +4,7 @@
 #include <glm/common.hpp>
 #include <glm/gtc/epsilon.hpp>
 #include <glm/gtc/constants.hpp>
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/component_wise.hpp>
 
 #if __cplusplus <= 201402L

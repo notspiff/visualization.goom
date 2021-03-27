@@ -1,6 +1,7 @@
 #pragma once
 
 #include "vivid/types.h"
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/matrix_operation.hpp>
 
 namespace vivid {

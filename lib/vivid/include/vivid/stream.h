@@ -3,6 +3,7 @@
 #include "vivid/types.h"
 #include "vivid/color.h"
 
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 
 #include <iostream>
