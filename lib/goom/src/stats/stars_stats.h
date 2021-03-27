@@ -12,7 +12,7 @@ namespace GOOM
 class StarsStats
 {
 public:
-  StarsStats() noexcept = default;
+  StarsStats() = default;
 
   void Reset();
   void Log(const GoomStats::LogStatsValueFunc& logVal) const;

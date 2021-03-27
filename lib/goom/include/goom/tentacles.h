@@ -219,7 +219,7 @@ private:
   };
 
 public:
-  Tentacles3D() noexcept = default;
+  Tentacles3D() noexcept {}; // = default; (clang fix)
 
   void AddTentacle(Tentacle3D&& t);
 

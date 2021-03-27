@@ -16,7 +16,7 @@ namespace GOOM
 class FilterStats
 {
 public:
-  FilterStats() noexcept = default;
+  FilterStats() = default;
 
   void Reset();
   void Log(const GoomStats::LogStatsValueFunc& l) const;

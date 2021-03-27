@@ -16,7 +16,7 @@ namespace GOOM
 class TentacleStats
 {
 public:
-  TentacleStats() noexcept = default;
+  TentacleStats() = default;
 
   void Reset();
   void Log(const GoomStats::LogStatsValueFunc& l) const;

@@ -13,7 +13,7 @@ namespace GOOM
 class IfsStats
 {
 public:
-  IfsStats() noexcept = default;
+  IfsStats() = default;
 
   void Reset();
   void Log(const GoomStats::LogStatsValueFunc& l) const;

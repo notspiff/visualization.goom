@@ -17,7 +17,7 @@ namespace GOOM
 class GoomControlStats
 {
 public:
-  GoomControlStats() noexcept = default;
+  GoomControlStats() = default;
   ~GoomControlStats() noexcept = default;
   GoomControlStats(const GoomControlStats&) noexcept = delete;
   GoomControlStats(GoomControlStats&&) noexcept = delete;

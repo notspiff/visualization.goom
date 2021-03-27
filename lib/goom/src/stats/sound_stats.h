@@ -12,7 +12,7 @@ namespace GOOM
 class SoundStats
 {
 public:
-  SoundStats() noexcept = default;
+  SoundStats() = default;
 
   void Reset();
   void Log(const GoomStats::LogStatsValueFunc& logVal) const;

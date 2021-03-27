@@ -14,7 +14,7 @@ namespace GOOM
 class LineStats
 {
 public:
-  LineStats() noexcept = default;
+  LineStats() = default;
 
   void Reset();
   void Log(const GoomStats::LogStatsValueFunc& l) const;
