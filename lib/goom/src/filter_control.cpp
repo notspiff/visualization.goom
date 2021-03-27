@@ -3,6 +3,7 @@
 #include "filter_data.h"
 #include "goom/goom_plugin_info.h"
 #include "goomutils/goomrand.h"
+#include "goomutils/image_bitmaps.h"
 #include "image_displacement.h"
 
 #include <stdexcept>
