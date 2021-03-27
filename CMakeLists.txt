@@ -44,7 +44,8 @@ add_subdirectory(lib)
 include_directories(${LIBS_DIR}/goom/include
                     ${LIBS_DIR}/goom/goomutils/include
                     ${LIBS_DIR}
-                    SYSTEM ${GLM_INCLUDE_DIR}
+                    # Need this '..' hack here. Not nice!
+                    SYSTEM ${GLM_INCLUDE_DIR}/..
                     SYSTEM ../../xbmc/xbmc/xbmc/addons/kodi-dev-kit/include
 #                    SYSTEM ${KODI_INCLUDE_DIR}/.. # Hack way with "/..", need bigger Kodi cmake rework to match right include ways (becomes done in future)
                     SYSTEM ${FREETYPE_INCLUDE_DIRS}

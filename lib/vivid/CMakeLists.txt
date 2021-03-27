@@ -57,6 +57,10 @@ target_include_directories( vivid
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
+    PRIVATE
+        SYSTEM ${CMAKE_CURRENT_SOURCE_DIR}/include
+        # Need this '..' hack here. Not nice!
+        SYSTEM ${GLM_INCLUDE_DIR}/..
 )
 
 set_target_properties( vivid

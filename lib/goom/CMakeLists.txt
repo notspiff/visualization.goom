@@ -65,6 +65,8 @@ target_include_directories(${PROJECT_NAME}
         ${LIBS_DIR}/fmt/include
         ${LIBS_DIR}/magic_enum/include
         ${FREETYPE_INCLUDE_DIRS}
+        # Need this '..' hack here. Not nice!
+        SYSTEM ${GLM_INCLUDE_DIR}/..
 )
 
 set_target_properties( ${PROJECT_NAME} 

@@ -16,6 +16,8 @@ target_compile_options ( vivid_tests
 target_include_directories( vivid_tests
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
+        # Need this '..' hack here. Not nice!
+        SYSTEM ${GLM_INCLUDE_DIR}/..
 )
 
 set_target_properties( vivid_tests
