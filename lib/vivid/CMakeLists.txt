@@ -35,6 +35,11 @@ add_library( vivid STATIC
 
 add_library(libs::vivid ALIAS ${PROJECT_NAME})
 
+target_compile_options ( vivid
+        PRIVATE
+            -Wall -Wextra -pedantic -Wno-effc++ -Wno-sign-conversion
+        )
+
 target_compile_features( vivid
 #    PUBLIC
 #        cxx_std_17  #  std::optional, nested namespaces

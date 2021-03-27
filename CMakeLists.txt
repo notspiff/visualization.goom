@@ -7,11 +7,10 @@ set(CPP_STANDARD 14)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR})
 
 find_package(Kodi REQUIRED)
-find_package(glm REQUIRED)
+message(STATUS "KODI_INCLUDE_DIR = \"${KODI_INCLUDE_DIR}\".")
 
-find_package(Freetype REQUIRED)
-message(STATUS "FREETYPE_INCLUDE_DIRS = \"${FREETYPE_INCLUDE_DIRS}\".")
-message(STATUS "FREETYPE_LIBRARIES = \"${FREETYPE_LIBRARIES}\".")
+find_package(glm REQUIRED)
+message(STATUS "GLM_INCLUDE_DIR = \"${GLM_INCLUDE_DIR}\".")
 
 if(APP_RENDER_SYSTEM STREQUAL "gl" OR NOT APP_RENDER_SYSTEM)
   find_package(OpenGl REQUIRED)
@@ -35,6 +34,11 @@ add_compile_options(${CMAKE_COMMON_CXX_WARNINGS})
 message(STATUS "Main C++ standard = \"${CMAKE_CXX_STANDARD}\".")
 
 set(LIBS_DIR ${CMAKE_SOURCE_DIR}/lib)
+
+find_package(Freetype REQUIRED)
+message(STATUS "FREETYPE_INCLUDE_DIRS = \"${FREETYPE_INCLUDE_DIRS}\".")
+message(STATUS "FREETYPE_LIBRARIES = \"${FREETYPE_LIBRARIES}\".")
+
 add_subdirectory(lib)
 
 include_directories(${LIBS_DIR}/goom/include
@@ -57,7 +61,7 @@ if ($ENV{DO_TESTING})
   include(../visualization.goom.testing/goom_testing)
 endif()
 
-list(APPEND DEPLIBS goom goomutils vivid)
+list(APPEND DEPLIBS goom goomutils vivid ${FREETYPE_LIBRARIES})
 
 message(STATUS "C Compile features = \"${COMMON_C_COMPILE_FEATURES}\".")
 message(STATUS "C++ Compile features = \"${COMMON_CXX_COMPILE_FEATURES}\".")

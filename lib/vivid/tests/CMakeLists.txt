@@ -8,6 +8,11 @@ add_executable( vivid_tests
 	# test_conversion_fuzzy.cpp	# requires Qt
 )
 
+target_compile_options ( vivid_tests
+        PRIVATE
+        -Wall -Wextra -pedantic -Wno-effc++ -Wno-sign-conversion
+        )
+
 target_include_directories( vivid_tests
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
