@@ -142,7 +142,7 @@ constexpr auto SqDistance(const float x, const float y) -> float
 
 constexpr float SMALL_FLOAT = 0.00001F;
 
-constexpr bool floats_equal(const float x, const float y, const float epsilon = SMALL_FLOAT)
+inline bool floats_equal(const float x, const float y, const float epsilon = SMALL_FLOAT)
 {
   return std::fabs(x - y) < epsilon;
 }

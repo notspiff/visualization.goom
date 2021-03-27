@@ -61,9 +61,10 @@ private:
   FontColorFunc m_getFontColor{};
   FontColorFunc m_getOutlineFontColor{};
 
-  static constexpr auto ToStdPixelCoord(int freeTypeCoord) -> int;
-  static constexpr auto ToFreeTypeCoord(int stdPixelCoord) -> int;
-  static constexpr auto ToFreeTypeCoord(float stdPixelCoord) -> int;
+  // clang compiler doesn't like 'static constexpr'
+  /*static constexpr*/ static auto ToStdPixelCoord(int freeTypeCoord) -> int;
+  /*static constexpr*/ static auto ToFreeTypeCoord(int stdPixelCoord) -> int;
+  /*static constexpr*/ static auto ToFreeTypeCoord(float stdPixelCoord) -> int;
   struct Vec2;
   struct Span;
   using SpanArray = std::vector<Span>;
@@ -486,17 +487,18 @@ void TextDraw::TextDrawImpl::WriteSpansToImage(const SpanArray& spans,
   }
 }
 
-constexpr auto TextDraw::TextDrawImpl::ToStdPixelCoord(const int freeTypeCoord) -> int
+// clang compiler doesn't like 'static constexpr'
+/*constexpr*/ inline auto TextDraw::TextDrawImpl::ToStdPixelCoord(const int freeTypeCoord) -> int
 {
   return freeTypeCoord >> 6;
 }
 
-constexpr auto TextDraw::TextDrawImpl::ToFreeTypeCoord(const int stdPixelCoord) -> int
+/*constexpr*/ inline auto TextDraw::TextDrawImpl::ToFreeTypeCoord(const int stdPixelCoord) -> int
 {
   return stdPixelCoord << 6;
 }
 
-constexpr auto TextDraw::TextDrawImpl::ToFreeTypeCoord(const float stdPixelCoord) -> int
+/*constexpr*/ inline auto TextDraw::TextDrawImpl::ToFreeTypeCoord(const float stdPixelCoord) -> int
 {
   return static_cast<int>(std::lround(stdPixelCoord * 64.0));
 }

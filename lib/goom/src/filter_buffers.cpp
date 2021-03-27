@@ -22,6 +22,10 @@ namespace GOOM
 
 using namespace GOOM::UTILS;
 
+// clang linking trouble - should be able to use static constexpr
+const float ZoomFilterBuffers::MAX_NORMALIZED_COORD = 2.0;
+const float ZoomFilterBuffers::MIN_NORMALIZED_COORD = -MAX_NORMALIZED_COORD;
+
 class ZoomFilterBuffers::FilterCoefficients
 {
 public:

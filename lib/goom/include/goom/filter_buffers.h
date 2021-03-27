@@ -24,8 +24,9 @@ class PixelBuffer;
 class ZoomFilterBuffers
 {
 public:
-  static constexpr float MAX_NORMALIZED_COORD = 2.0;
-  static constexpr float MIN_NORMALIZED_COORD = -MAX_NORMALIZED_COORD;
+  // clang compiler doesn't like 'static constexpr'
+  /*static constexpr*/ static const float MAX_NORMALIZED_COORD;
+  /*static constexpr*/ static const float MIN_NORMALIZED_COORD;
   static constexpr int32_t DIM_FILTER_COEFFS = 16;
   static constexpr size_t NUM_NEIGHBOR_COEFFS = 4;
   using NeighborhoodCoeffArray = union
