@@ -9,19 +9,12 @@ env:
 #
 matrix:
   include:
-    - os: linux
-      dist: xenial
-      sudo: required
-      compiler: gcc
-    - os: linux
-      dist: xenial
-      sudo: required
-      compiler: clang
-    - os: linux
-      dist: bionic
-      sudo: required
-      compiler: gcc
-      env: DEBIAN_BUILD=true
+# g++ in bionic is a bit broken - maybe glm includes - not sure  
+#    - os: linux
+#      dist: bionic
+#      sudo: required
+#      compiler: gcc
+#      env: DEBIAN_BUILD=true
     - os: linux
       dist: focal
       sudo: required
