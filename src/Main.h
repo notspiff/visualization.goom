@@ -18,8 +18,6 @@
 
 #include <condition_variable>
 #include <functional>
-#include <glm/ext.hpp>
-#include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <kodi/General.h>
 #include <kodi/addon-instance/Visualization.h>

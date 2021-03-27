@@ -78,7 +78,7 @@ private:
   std::vector<uint32_t> m_numDriverTentacles{};
   std::vector<uint32_t> m_numDriverChanges{};
 
-  size_t m_lastNumTentacles = 0;
+  uint32_t m_lastNumTentacles = 0;
   bool m_lastUpdatingWithDraw = false;
   float m_lastCycle = 0.0;
   float m_lastCycleInc = 0.0;

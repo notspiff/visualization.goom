@@ -29,8 +29,13 @@ TEST_CASE("Color channels are added", "[color-channel-add]")
 
 TEST_CASE("Colors are added", "[color-add]")
 {
+#if __cplusplus <= 201402L
+  const Pixel c1{{100, 50, 20}};
+  const Pixel c2{{120, 250, 70}};
+#else
   const Pixel c1{{.r = 100, .g = 50, .b = 20}};
   const Pixel c2{{.r = 120, .g = 250, .b = 70}};
+#endif
   const Pixel c3 = GetColorAdd(c1, c2, true);
 
   REQUIRE(static_cast<uint32_t>(c3.R()) == 220);
@@ -48,12 +53,16 @@ TEST_CASE("Color channels are brightened", "[color-channel-bright]")
   REQUIRE(GetBrighterChannelColor(100, 2) == 100 * 2 / 255);
   REQUIRE(GetBrighterChannelColor(11, 20) == 11 * 20 / 255);
   REQUIRE(GetBrighterChannelColor(0, 20) == 0);
-  REQUIRE(GetBrighterChannelColor(100, 20) == std::clamp(0U, 100U * 20U / 255U, 255U));
+  REQUIRE(GetBrighterChannelColor(100, 20) == stdnew::clamp(0U, 100U * 20U / 255U, 255U));
 }
 
 TEST_CASE("Colors are brightened", "[color-bright]")
 {
+#if __cplusplus <= 201402L
+  const Pixel c{{100, 50, 20}};
+#else
   const Pixel c{{.r = 100, .g = 50, .b = 20}};
+#endif
 
   Pixel cb = GetBrighterColor(1.0F, c, false);
   REQUIRE(cb.R() == 100);
@@ -73,7 +82,11 @@ TEST_CASE("Colors are brightened", "[color-bright]")
 
 TEST_CASE("Half intensity color", "[color-half-intensity]")
 {
+#if __cplusplus <= 201402L
+  const Pixel c{{100, 50, 20}};
+#else
   const Pixel c{{.r = 100, .g = 50, .b = 20}};
+#endif
   const Pixel ch = GetHalfIntensityColor(c);
 
   REQUIRE(ch.R() == 50);
@@ -83,7 +96,11 @@ TEST_CASE("Half intensity color", "[color-half-intensity]")
 
 TEST_CASE("Lighten", "[color-lighten]")
 {
+#if __cplusplus <= 201402L
+  const Pixel c{{100, 0, 0}};
+#else
   const Pixel c{{.r = 100, .g = 0, .b = 0}};
+#endif
 
   const Pixel cl = GetLightenedColor(c, 10.0);
   REQUIRE(static_cast<uint32_t>(cl.R()) == 50);
@@ -93,7 +110,11 @@ TEST_CASE("Lighten", "[color-lighten]")
 
 TEST_CASE("Lightened color", "[color-half-lightened]")
 {
+#if __cplusplus <= 201402L
+  const Pixel c{{100, 50, 20}};
+#else
   const Pixel c{{.r = 100, .g = 50, .b = 20}};
+#endif
 
   Pixel cl = GetLightenedColor(c, 0.5);
   REQUIRE(cl.R() == 0);
@@ -120,7 +141,7 @@ TEST_CASE("Lightened color", "[color-half-lightened]")
   REQUIRE(cl.G() == 25);
   REQUIRE(cl.B() == 10);
 
-  const Pixel c2{{.r = 255, .g = 255, .b = 255}};
+  const Pixel c2 = Pixel::WHITE;
   cl = GetLightenedColor(c2, 1.0);
   REQUIRE(cl.R() == 0);
   REQUIRE(cl.G() == 0);
@@ -144,7 +165,11 @@ TEST_CASE("Lightened color", "[color-half-lightened]")
 
 TEST_CASE("Evolved color", "[color-evolve]")
 {
+#if __cplusplus <= 201402L
+  const Pixel c{{100, 50, 20}};
+#else
   const Pixel c{{.r = 100, .g = 50, .b = 20}};
+#endif
   Pixel cl;
 
   cl = GetEvolvedColor(c);

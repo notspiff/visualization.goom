@@ -85,7 +85,7 @@ private:
   uint64_t m_startingSeed = 0;
   uint64_t m_lastSeed = 0;
   uint32_t m_lastNumClipped = 0;
-  size_t m_numThreadsUsed = 0;
+  uint32_t m_numThreadsUsed = 0;
   std::string m_fontFileUsed{};
 
   uint32_t m_numUpdates = 0;
@@ -93,8 +93,8 @@ private:
   uint32_t m_minTimeInUpdatesMs = std::numeric_limits<uint32_t>::max();
   uint32_t m_maxTimeInUpdatesMs = 0;
   std::chrono::high_resolution_clock::time_point m_timeNowInUpdate{};
-  size_t m_stateAtMin = 0;
-  size_t m_stateAtMax = 0;
+  uint32_t m_stateAtMin = 0;
+  uint32_t m_stateAtMax = 0;
   ZoomFilterMode m_filterModeAtMin = ZoomFilterMode::_NULL;
   ZoomFilterMode m_filterModeAtMax = ZoomFilterMode::_NULL;
 

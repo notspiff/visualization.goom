@@ -3,7 +3,6 @@
 #include "vivid/types.h"
 
 #include <glm/mat3x3.hpp>
-#include <optional>
 #include <string>
 
 namespace vivid {

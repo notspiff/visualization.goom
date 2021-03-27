@@ -9,7 +9,6 @@
 #include <memory>
 #include <tuple>
 #include <vector>
-#include <vivid/vivid.h>
 
 namespace GOOM
 {

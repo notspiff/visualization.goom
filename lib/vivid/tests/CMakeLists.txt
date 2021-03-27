@@ -5,7 +5,7 @@ add_executable( vivid_tests
     main.cpp
     test_conversion_manual.cpp
     test_profiles.cpp
-	# test_conversion_fuzzy.cpp	# requires Qt
+    # test_conversion_fuzzy.cpp	# requires Qt
 )
 
 target_compile_options ( vivid_tests
@@ -20,7 +20,7 @@ target_include_directories( vivid_tests
 
 set_target_properties( vivid_tests
     PROPERTIES
-        CXX_STANDARD 20
+        CXX_STANDARD 14
 )
 
 target_link_libraries( vivid_tests

@@ -4,6 +4,7 @@
 #include "goom_config.h"
 
 #include <algorithm>
+#include <array>
 #include <cassert>
 #include <cstdint>
 #include <cstring>

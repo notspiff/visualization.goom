@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.12)
 
 project(goomtests LANGUAGES CXX)
 
@@ -6,7 +6,7 @@ project(goomtests LANGUAGES CXX)
 #set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address")
 #set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -fsanitize=address")
 
-set(CPP_STANDARD 20)
+set(CPP_STANDARD 14)
 
 if(WIN32)
     add_definitions(-D_WIN32PC)

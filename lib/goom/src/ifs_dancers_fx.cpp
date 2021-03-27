@@ -311,7 +311,11 @@ private:
   auto Transform(const Similitude& simi, const FltPoint& p0) const -> FltPoint;
   static auto GaussRand(Dbl c, Dbl S, Dbl A_mult_1_minus_exp_neg_S) -> Dbl;
   static auto HalfGaussRand(Dbl c, Dbl S, Dbl A_mult_1_minus_exp_neg_S) -> Dbl;
+#if __cplusplus <= 201402L
+  static auto Get_1_minus_exp_neg_S(Dbl S) -> Dbl;
+#else
   static constexpr auto Get_1_minus_exp_neg_S(Dbl S) -> Dbl;
+#endif
 };
 
 Fractal::Fractal(const std::shared_ptr<const PluginInfo>& goomInfo,
@@ -499,7 +503,11 @@ void Fractal::DrawFractal()
   }
 }
 
+#if __cplusplus <= 201402L
+inline auto Fractal::Get_1_minus_exp_neg_S(const Dbl S) -> Dbl
+#else
 constexpr auto Fractal::Get_1_minus_exp_neg_S(const Dbl S) -> Dbl
+#endif
 {
   return 1.0F - std::exp(-S);
 }

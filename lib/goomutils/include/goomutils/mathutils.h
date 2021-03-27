@@ -7,7 +7,9 @@
 #include <cmath>
 #include <cstdlib>
 #include <memory>
+#if __cplusplus > 201703L
 #include <numbers>
+#endif
 #include <tuple>
 #include <vector>
 
@@ -45,6 +47,18 @@ constexpr double lerp(double __a, double __b, double __t) noexcept
 }
 
 constexpr auto clamp(const int x, const int lo, const int hi) -> int
+{
+  if (x < lo)
+  {
+    return lo;
+  }
+  if (x > hi)
+  {
+    return hi;
+  }
+  return x;
+}
+constexpr auto clamp(const uint32_t x, const uint32_t lo, const uint32_t hi) -> uint32_t
 {
   if (x < lo)
   {
@@ -108,7 +122,7 @@ namespace GOOM::UTILS
 {
 #endif
 
-#if __cplusplus <= 201402L
+#if __cplusplus <= 201703L
 constexpr float m_pi = 3.14159265358979323846264;
 #else
 constexpr float m_pi = std::numbers::pi;
