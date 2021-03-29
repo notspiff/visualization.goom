@@ -1,0 +1,17 @@
+#ifndef FMT_FORMAT_
+#define FMT_FORMAT_
+
+#define FMT_HEADER_ONLY 1
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wsign-conversion"
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wnon-virtual-dtor"
+
+#include "fmt_private/format.h"
+
+#pragma GCC diagnostic pop
+
+namespace std20 = ::fmt;
+
+#endif

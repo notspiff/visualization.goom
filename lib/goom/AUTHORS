@@ -15,3 +15,7 @@ Fred
 Rémi Duraffort <ivoire@videolan.org>
     Fix our bugs for integration into VLC.
 
+---
+GOOM++
+    GLK (2021-02-01)
+        C++14 rewrite and more colors from 'vivid'
